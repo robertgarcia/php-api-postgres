@@ -106,10 +106,10 @@
                     . ' SET '
                     . 'des_motivo = :des_motivo, '
                     . 'estado = :estado, '
-                    . 'tipo = :tipo, '
+                    . 'tipo = :tipo '
                     . 'WHERE motivo = :motivo';
     
-            $stmt = $this->pdo->prepare($sql);
+            $stmt = $this->conn->prepare($sql);
     
             // bind values to the statement
             $stmt->bindValue(':des_motivo', $this->des_motivo);
@@ -121,6 +121,21 @@
             $stmt->execute();
     
             // return the number of row affected
+            return $stmt->rowCount();
+        }
+
+        /**
+         * Delete a row in the stocks table specified by id
+         * @param int $id
+         * @return the number row deleted
+         */
+        public function delete() {
+            $sql = 'DELETE FROM '. $this->table_name .' WHERE motivo = :motivo';
+    
+            $stmt = $this->conn->prepare($sql);
+            $stmt->bindValue(':motivo', $this->motivo);
+            $stmt->execute();
+    
             return $stmt->rowCount();
         }
 
