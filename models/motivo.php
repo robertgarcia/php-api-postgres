@@ -35,6 +35,32 @@
         }
 
         /**
+        * Return one row in the table
+        * @return array
+        */
+        public function one() {
+            $sql = "SELECT * FROM " . $this->table_name . " p WHERE motivo = ". $this->motivo ." ORDER BY p.motivo DESC";
+            $motivos = [];
+            try {
+                $stmt = $this->conn->query($sql);
+                $row = $stmt->fetch(\PDO::FETCH_ASSOC);
+                if($row['motivo']){
+                    $motivos = [
+                        'motivo' => $row['motivo'],
+                        'des_motivo' => $row['des_motivo'],
+                        'estado' => $row['estado'],
+                        'tipo' => $row['tipo']
+                    ];
+                }
+            } catch (\PDOException $e) {
+                //print_r($e);
+                //throw new \Exception("DataBase Error!");
+            }
+            
+            return $motivos;
+        }
+
+        /**
          * insert a new row into the table
          * @return boolean
          */
