@@ -25,7 +25,7 @@
     $motivo->motivo = $data->id;
     
     // set data property values
-    $motivo->name = $data->name;
+    $motivo->motivo = $data->id;
     $motivo->des_motivo = $data->desc;
     $motivo->estado = $data->estado;
     $motivo->tipo = $data->tipo;
