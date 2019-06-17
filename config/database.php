@@ -26,10 +26,10 @@
                     $params['user'], 
                     $params['password']);
     
-            $pdo = new \PDO($conStr);
-            $pdo->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
+            $conn = new \PDO($conStr);
+            $conn->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
     
-            return $pdo;
+            return $conn;
         }
     
         /**
